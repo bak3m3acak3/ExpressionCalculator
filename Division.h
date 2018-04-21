@@ -14,7 +14,7 @@ private:
 
 public:
     // Constructor
-    Division(Expression A, Expression B);
+    Division(Expression* A, Expression* B);
 
     virtual ~Division();
 

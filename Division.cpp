@@ -3,9 +3,9 @@
 
 
 // Constructor
-Division :: Division(Expression A, Expression B) {
-    obj1 = &A;
-    obj2 = &B;
+Division :: Division(Expression* A, Expression* B) {
+    obj1 = A;
+    obj2 = B;
 }
 
 Division ::~Division() {};
