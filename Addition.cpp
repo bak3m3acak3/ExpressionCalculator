@@ -35,7 +35,8 @@ Expression* Addition :: getRightSide() {
     return obj2;
 }
 
-// Make similar method for Division objects that can be combined
+/* Searches 4 items (obj1(left and right) and obj2(left and right)
+for Integers or fractions that can be combined */
 vector <Expression*> Addition :: getAdditiveTerms() {
     vector <Expression*> terms;
     vector <Expression*> additiveInts;
@@ -75,12 +76,15 @@ vector <Expression*> Addition :: getAdditiveTerms() {
     }
 
     // search for like denominators, push
-    for(int i = 0; i < divTerms.size(); i++) {
-        for(int j = 1; j < divTermsCopy.size(); j++) {
-            if(divTerms[i]->getRightSide() == divTermsCopy[j]->getRightSide())
+    for(int i = 0; i < divTerms.size() - 1; i++) {
+        for(int j = i + 1; j < divTermsCopy.size(); j++) {
+            if(divTerms[i]->getRightSide()->getValue() == divTermsCopy[j]->getRightSide()->getValue()) {
                 additiveDivs.push_back(divTerms[i]);
+                additiveDivs.push_back(divTermsCopy[j]);
+            }
         }
     }
+
     if(additiveDivs.size() > 1) {
         int sumOfNumerators = 0;
         for (int i = 0; i < additiveDivs.size(); i++) {
@@ -137,7 +141,7 @@ Expression* Addition :: simplify(){
         Integer* exactValue = new Integer(s);
         return exactValue;
     }
-    else if(!getAdditiveTerms().size() >1) {
+    else if(getAdditiveTerms().size() >1) {
         int sumOfAdditiveTerms;
         for(int i = 0; i < getAdditiveTerms().size(); i++) {
             sumOfAdditiveTerms += getAdditiveTerms()[i]->getValue();
