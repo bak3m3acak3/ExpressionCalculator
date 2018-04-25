@@ -3,9 +3,9 @@
 
 
 //constructor
-Logarithm :: Logarithm(Expression A, Expression B) {
-    obj1 = &A;
-    obj2 = &B;
+Logarithm :: Logarithm(Expression* A, Expression* B) {
+    obj1 = A;
+    obj2 = B;
 }
 
 Logarithm ::~Logarithm() {};

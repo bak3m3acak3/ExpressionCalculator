@@ -13,7 +13,7 @@ private:
     string typeID;
 
 public:
-    Multiplication(Expression A, Expression B);
+    Multiplication(Expression* A, Expression* B);
 
     virtual ~Multiplication();
 

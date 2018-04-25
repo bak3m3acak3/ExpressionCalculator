@@ -4,6 +4,8 @@
 #include "Expression.h"
 #include <string>
 
+class Subtraction;
+
 class Addition : public Expression {
 // Represents the addition of two expressions, which can be an Integer or one of the other types
 // implementing Expression, such as Addition

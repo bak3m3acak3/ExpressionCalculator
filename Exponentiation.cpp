@@ -1,20 +1,28 @@
 #include "Exponentiation.h"
 #include "Expression.h"
+#include "Integer.h"
+#include "Division.h"
+#include <cmath>
 
 
 // Constructor
-Exponentiation :: Exponentiation(Expression A, Expression B){
-    obj1 = &A;
-    obj2 = &B;
+Exponentiation :: Exponentiation(Expression* A, Expression* B){
+    obj1 = A;
+    obj2 = B;
 }
 
-Exponentiation::~Exponentiation() {};
+Exponentiation::~Exponentiation() {
+    delete obj1;
+    delete obj2;
+};
 
 string Exponentiation :: getType() {
     return typeID = "Exponentiation";
 }
 
-int Exponentiation :: getValue() {};
+int Exponentiation :: getValue() {
+    return static_cast<int>(pow(obj1->getValue(), obj2->getValue()));
+};
 
 Expression* Exponentiation :: getLeftSide() {
     return obj1;
@@ -36,4 +44,24 @@ vector <Expression*> Exponentiation :: getDenominatorFactors(){};
 vector <Expression*> Exponentiation :: getAdditiveTerms(){};
 
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
-Expression* Exponentiation :: simplify(){};
+Expression* Exponentiation :: simplify(){
+    if(obj1->getType() == "Integer" && obj2->getType() == "Integer") {
+        string s = to_string(getValue());
+        Integer* exactValue = new Integer(s);
+        return exactValue;
+    }
+    if(obj1->getType() == "Division" && obj2->getType() == "Integer") {
+        if(obj1->getLeftSide()->getType() == "Integer" && obj1->getRightSide()->getType() == "Integer") {
+            Integer* intObj1 = new Integer(to_string(pow(obj1->getLeftSide()->getValue(), obj2->getValue())));
+            Integer* intObj2 = new Integer(to_string(pow(obj1->getRightSide()->getValue(), obj2->getValue())));
+            Division* divObj = new Division(intObj1, intObj2);
+            return divObj;
+        }
+        else {
+            Exponentiation* expObj = new Exponentiation(obj1, obj2);
+            return expObj;
+        }
+    }
+
+
+};

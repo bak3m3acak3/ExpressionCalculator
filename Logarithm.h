@@ -12,7 +12,7 @@ private:
     string typeID;
 
 public:
-    Logarithm(Expression A, Expression B);
+    Logarithm(Expression* A, Expression* B);
 
     virtual ~Logarithm();
 

@@ -4,6 +4,8 @@
 #include "Expression.h"
 #include <string>
 
+class Addition;
+
 class Subtraction : public Expression {
 // Like addition, but with a flipped sign on the second operand.
 
@@ -13,7 +15,7 @@ private:
     string typeID;
 
 public:
-    Subtraction(Expression A, Expression B);
+    Subtraction(Expression* A, Expression* B);
 
     virtual ~Subtraction();
 
@@ -32,6 +34,8 @@ public:
     /* Returns the individual multiplicative factors of the expression
      * –only those of a negative power. (Thus,* belonging in the denominator if fractional.)*/
     virtual vector <Expression*> getDenominatorFactors();
+
+    Addition* subToAdd();
 
     /* If the expression is the result of addition or subtraction, returns the individual terms.*/
     virtual vector <Expression*> getAdditiveTerms();

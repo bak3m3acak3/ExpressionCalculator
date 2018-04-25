@@ -12,7 +12,7 @@ private:
     string typeID;
 
 public:
-    NthRoot(Expression A, Expression B);
+    NthRoot(Expression* A, Expression* B);
 
     virtual ~NthRoot();
 

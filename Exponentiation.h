@@ -13,7 +13,7 @@ private:
 
 public:
     // Constructor
-    Exponentiation(Expression A, Expression B);
+    Exponentiation(Expression* A, Expression* B);
 
     virtual ~Exponentiation();
 

@@ -3,9 +3,9 @@
 
 
 //constructor
-NthRoot :: NthRoot(Expression A, Expression B) {
-    obj1 = &A;
-    obj2 = &B;
+NthRoot :: NthRoot(Expression* A, Expression* B) {
+    obj1 = A;
+    obj2 = B;
 }
 
 NthRoot ::~NthRoot() {};
