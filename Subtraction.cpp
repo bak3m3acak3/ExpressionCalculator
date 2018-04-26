@@ -229,3 +229,7 @@ Expression* Subtraction :: simplify(){
         return simplifiedAddObj;
     }
 };
+
+string Subtraction :: print(){
+    return getLeftSide()->print() + " - " + getRightSide()->print();
+};

@@ -37,3 +37,7 @@ vector <Expression*> Logarithm :: getAdditiveTerms(){};
 
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
 Expression* Logarithm :: simplify(){};
+
+string Logarithm :: print(){
+    return getLeftSide()->print() + " log " + getRightSide()->print();
+};

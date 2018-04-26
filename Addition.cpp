@@ -181,16 +181,19 @@ Expression* Addition :: simplify() {
         return exactValue;
     }
     if((obj1->getType() == "Division" && obj2->getType() == "Division") && (obj1->getRightSide()->getValue() == obj2->getRightSide()->getValue())) {
-        cout << "Got into div + div" << endl;
         int sumOfNumerators = obj1->getLeftSide()->getValue() + obj2->getLeftSide()->getValue();
         Integer *sumOfNumeratorsObj = new Integer(to_string(sumOfNumerators));
         Division *sumOfDivisionTermsObj = new Division(sumOfNumeratorsObj, obj2->getRightSide());
-        return sumOfDivisionTermsObj;
+        return sumOfDivisionTermsObj->simplify();
     }
     else {
         vector <Expression*> simplifiedAdd = getAdditiveTerms();
         Addition* simplifiedAddObj = new Addition(simplifiedAdd[0], simplifiedAdd[1]);
         return simplifiedAddObj;
     }
+};
+
+string Addition :: print(){
+    return getLeftSide()->print() + " + " + getRightSide()->print();
 };
 

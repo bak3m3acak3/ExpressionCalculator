@@ -37,3 +37,7 @@ vector <Expression*> NthRoot :: getAdditiveTerms(){};
 
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
 Expression* NthRoot :: simplify(){};
+
+string NthRoot :: print(){
+    return getLeftSide()->print() + " rt " + getRightSide()->print();
+};

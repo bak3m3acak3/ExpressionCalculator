@@ -34,15 +34,9 @@ vector <Expression*> getAdditiveTerms() {};
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
 Expression* simplify() {};
 
+string Expression :: print() {};
 
-
-string Expression :: getType() {}
-
-bool Expression :: isInt(Expression* a) {
-    if(a->getValue() == int(a->getValue())){
-        return true;
-    } else return false;
-}
+string Expression :: getType() {};
 
 //bool Expression :: stringIsDigits(const string s) {
 //    return s.find_first_not_of( "0123456789" ) == string::npos;

@@ -214,3 +214,7 @@ Expression* Division :: simplify() {
         return divObj;
     }
 };
+
+string Division :: print(){
+    return getLeftSide()->print() + " / " + getRightSide()->print();
+};

@@ -49,8 +49,6 @@ int main() {
 
     tokens = obj2.parse(obj2.toRPN(s));
     for(int i = 0; i < tokens.size(); i++) {
-        cout << "Token: " << i << " " << tokens[i] << endl;
-
         if(hasOnlyDigits(tokens[i])) {
             Integer* intObj = new Integer(tokens[i]);
             opStack.push(intObj);
@@ -87,7 +85,9 @@ int main() {
             exit(0);
         }
     }
+
     Expression* finalValue = opStack.top();
-    cout << finalValue->simplify()->getLeftSide()->getRightSide()->getValue();
+    cout << finalValue->simplify()->print();
+    delete finalValue;
 
 }

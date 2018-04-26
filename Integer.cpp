@@ -38,3 +38,7 @@ Expression* Integer :: simplify() {
     Integer* intObj = new Integer(string1);
     return intObj;
 };
+
+string Integer :: print(){
+    return string1;
+};

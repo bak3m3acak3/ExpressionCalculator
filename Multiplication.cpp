@@ -90,3 +90,7 @@ Expression* Multiplication :: simplify() {
         return multObj;
     }
 };
+
+string Multiplication :: print(){
+    return getLeftSide()->print() + " * " + getRightSide()->print();
+};

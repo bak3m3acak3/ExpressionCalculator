@@ -40,6 +40,9 @@ public:
 
     /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
     virtual Expression* simplify();
+
+    virtual string print();
+
 };
 
 

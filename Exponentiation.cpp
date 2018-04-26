@@ -63,5 +63,8 @@ Expression* Exponentiation :: simplify(){
         }
     }
 
+}
 
+string Exponentiation :: print(){
+    return getLeftSide()->print() + " ^ " + getRightSide()->print();
 };

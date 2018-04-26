@@ -41,12 +41,9 @@ public:
 //
     virtual string getType() = 0;
 
-    static bool isInt(Expression* a);
-//
-//    bool stringIsDigits(const string s);
-//
-//    static bool hasOnlyDigits(const string s);
+    virtual string print() = 0;
 
+    static bool isInt(Expression* a);
 };
 
 
