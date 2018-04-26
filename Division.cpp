@@ -89,6 +89,8 @@ vector <Expression*> Division :: getAdditiveTerms() {};
 
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
 Expression* Division :: simplify() {
+    obj1 = obj1->simplify();
+    obj2 = obj2->simplify();
     if(obj1->getType() == "Integer" && obj2->getType() == "Integer") {
         if(obj1->getValue() < 0 && obj2->getValue() > 0) {
             obj1 = new Integer(to_string(-1 * obj1->getValue()));

@@ -34,4 +34,7 @@ vector <Expression*> Integer :: getDenominatorFactors(){};
 vector <Expression*> Integer :: getAdditiveTerms(){};
 
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
-Expression* Integer :: simplify(){};
+Expression* Integer :: simplify() {
+    Integer* intObj = new Integer(string1);
+    return intObj;
+};

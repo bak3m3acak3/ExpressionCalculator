@@ -172,13 +172,16 @@ vector <Expression*> Addition :: getAdditiveTerms() {
 }
 
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
-Expression* Addition :: simplify(){
+Expression* Addition :: simplify() {
+    obj1 = obj1->simplify();
+    obj2 = obj2->simplify();
     if(obj1->getType() == "Integer" && obj2->getType() == "Integer") {
         string s = to_string(getValue());
         Integer* exactValue = new Integer(s);
         return exactValue;
     }
-    if((obj1->getType() == "Division" && obj2->getType() == "Division") && (obj1->getRightSide() == obj2->getRightSide())) {
+    if((obj1->getType() == "Division" && obj2->getType() == "Division") && (obj1->getRightSide()->getValue() == obj2->getRightSide()->getValue())) {
+        cout << "Got into div + div" << endl;
         int sumOfNumerators = obj1->getLeftSide()->getValue() + obj2->getLeftSide()->getValue();
         Integer *sumOfNumeratorsObj = new Integer(to_string(sumOfNumerators));
         Division *sumOfDivisionTermsObj = new Division(sumOfNumeratorsObj, obj2->getRightSide());
