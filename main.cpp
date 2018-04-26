@@ -10,7 +10,7 @@
 #include <cmath>
 
 
-bool hasOnlyDigits(const string s){
+bool hasOnlyDigits(const string s) {
     return s.find_first_not_of( "0123456789" ) == string::npos;
 }
 
@@ -23,70 +23,69 @@ int main() {
     stack <Expression*> opStack;
     ShuntingYardAlgorithm obj1;
     ShuntingYardAlgorithm obj2;
+    bool valid_input = true;
 
-    cout << "Enter an expression:" << endl;
-    getline(cin, str);
-    s += str;
+        // Set delimiters
+        delimiters.push_back("+");
+        delimiters.push_back("-");
+        delimiters.push_back("*");
+        delimiters.push_back("/");
+        delimiters.push_back("^");
+        delimiters.push_back("(");
+        delimiters.push_back(")");
 
-    // Set delimiters
-    delimiters.push_back("+");
-    delimiters.push_back("-");
-    delimiters.push_back("*");
-    delimiters.push_back("/");
-    delimiters.push_back("^");
+    do {
+        cout << "Enter an expression:" << endl;
+        getline(cin, str);
+        s += str;
 
-
-    // Test for invalid input
-    testVector = obj2.parse(s);
-    for(int i = 0; i < testVector.size(); i ++) {
-        if(!hasOnlyDigits(testVector[i])) {
-            if(testVector[i] != "<" && find(delimiters.begin(), delimiters.end(), testVector[i]) == delimiters.end()) {
-                cout << "Error: Invalid entry. Only input numbers and operators" << endl;
-                exit(0);
+        // Test for invalid input
+        testVector = obj2.parse(s);
+        for (int i = 0; i < testVector.size(); i++) {
+            if (!hasOnlyDigits(testVector[i])) {
+                if (testVector[i] != "<" &&
+                    find(delimiters.begin(), delimiters.end(), testVector[i]) == delimiters.end()) {
+                    cout << "Error: Invalid entry. Only input numbers and operators separated by spaces!" << endl << endl;
+                    valid_input = false;
+                }
             }
         }
-    }
+    }while (valid_input == false);
 
     tokens = obj2.parse(obj2.toRPN(s));
-    for(int i = 0; i < tokens.size(); i++) {
-        if(hasOnlyDigits(tokens[i])) {
-            Integer* intObj = new Integer(tokens[i]);
+    for (int i = 0; i < tokens.size(); i++) {
+        if (hasOnlyDigits(tokens[i])) {
+            Integer *intObj = new Integer(tokens[i]);
             opStack.push(intObj);
-        }
-        else if(find(delimiters.begin(), delimiters.end(), tokens[i]) != delimiters.end()) {
-            Expression* B = opStack.top();
+        } else if (find(delimiters.begin(), delimiters.end(), tokens[i]) != delimiters.end()) {
+            Expression *B = opStack.top();
             opStack.pop();
-            Expression* A = opStack.top();
+            Expression *A = opStack.top();
             opStack.pop();
 
-            if(tokens[i] == "+") {
-                Addition* addObj = new Addition(A, B);
+            if (tokens[i] == "+") {
+                Addition *addObj = new Addition(A, B);
                 opStack.push(addObj);
-            }
-            else if(tokens[i] == "-") {
-                Subtraction* subObj = new Subtraction(A, B);
+            } else if (tokens[i] == "-") {
+                Subtraction *subObj = new Subtraction(A, B);
                 opStack.push(subObj);
-            }
-            else if(tokens[i] == "*") {
-                Multiplication* multObj = new Multiplication(A, B);
+            } else if (tokens[i] == "*") {
+                Multiplication *multObj = new Multiplication(A, B);
                 opStack.push(multObj);
-            }
-            else if(tokens[i] == "/") {
-                Division* divObj = new Division(A, B);
+            } else if (tokens[i] == "/") {
+                Division *divObj = new Division(A, B);
                 opStack.push(divObj);
-            }
-            else if(tokens[i] == "^") {
-                Exponentiation* expObj = new Exponentiation(A, B);
+            } else if (tokens[i] == "^") {
+                Exponentiation *expObj = new Exponentiation(A, B);
                 opStack.push(expObj);
             }
-        }
-        else {
-            cout << "Error: Invalid entry. Only input numbers and operators" << endl;
+        } else {
+            cout << "Error: Invalid entry. Only input numbers and operators separated by spaces!" << endl;
             exit(0);
         }
     }
 
-    Expression* finalValue = opStack.top();
+    Expression *finalValue = opStack.top();
     cout << finalValue->simplify()->print();
     delete finalValue;
 

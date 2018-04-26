@@ -48,6 +48,8 @@ vector <Expression*> Multiplication :: getAdditiveTerms(){};
 
 /* Signals the expression to produce a simplified version of itself put into lowest terms.*/
 Expression* Multiplication :: simplify() {
+    obj1 = obj1->simplify();
+    obj2 = obj2->simplify();
     if(obj1->getType() == "Integer" && obj2->getType() == "Integer") {
         string s = to_string(getValue());
         Integer* exactValue = new Integer(s);

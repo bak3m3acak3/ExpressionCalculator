@@ -113,10 +113,16 @@ Expression* Division :: simplify() {
             for(int i = 0; i < denomList.size(); i++)
                 denominator *= denomList[i]->getValue();
 
-            Integer* numObj = new Integer(to_string(-1 * numerator));
-            Integer* denomObj = new Integer(to_string(denominator));
-            Division* divObj = new Division(numObj, denomObj);
-            return divObj;
+            if(denominator == 1) {
+                Integer* numObj = new Integer(to_string(-1 * numerator));
+                return numObj;
+            }
+            else {
+                Integer *numObj = new Integer(to_string(-1 * numerator));
+                Integer *denomObj = new Integer(to_string(denominator));
+                Division *divObj = new Division(numObj, denomObj);
+                return divObj;
+            }
         }
         else if(obj1->getValue() > 0 && obj2->getValue() < 0) {
             obj2 = new Integer(to_string(-1 * obj2->getValue()));
@@ -139,10 +145,16 @@ Expression* Division :: simplify() {
             for(int i = 0; i < denomList.size(); i++)
                 denominator *= denomList[i]->getValue();
 
-            Integer* numObj = new Integer(to_string(numerator));
-            Integer* denomObj = new Integer(to_string(-1 * denominator));
-            Division* divObj = new Division(numObj, denomObj);
-            return divObj;
+            if(denominator == 1) {
+                Integer* numObj = new Integer(to_string(numerator));
+                return numObj;
+            }
+            else {
+                Integer *numObj = new Integer(to_string(numerator));
+                Integer *denomObj = new Integer(to_string(-1 * denominator));
+                Division *divObj = new Division(numObj, denomObj);
+                return divObj;
+            }
         }
         else if(obj1->getValue() < 0 && obj2->getValue() < 0) {
             obj1 = new Integer(to_string(-1 * obj1->getValue()));
@@ -166,10 +178,16 @@ Expression* Division :: simplify() {
             for (int i = 0; i < denomList.size(); i++)
                 denominator *= denomList[i]->getValue();
 
-            Integer *numObj = new Integer(to_string(numerator));
-            Integer *denomObj = new Integer(to_string(denominator));
-            Division *divObj = new Division(numObj, denomObj);
-            return divObj;
+            if(denominator == 1) {
+                Integer* numObj = new Integer(to_string(numerator));
+                return numObj;
+            }
+            else {
+                Integer *numObj = new Integer(to_string(numerator));
+                Integer *denomObj = new Integer(to_string(denominator));
+                Division *divObj = new Division(numObj, denomObj);
+                return divObj;
+            }
         }
         else if(obj1->getValue() > 0 && obj2->getValue() > 0) {
             vector<Expression *> numList = getNumeratorFactors();
@@ -191,10 +209,16 @@ Expression* Division :: simplify() {
             for (int i = 0; i < denomList.size(); i++)
                 denominator *= denomList[i]->getValue();
 
-            Integer *numObj = new Integer(to_string(numerator));
-            Integer *denomObj = new Integer(to_string(denominator));
-            Division *divObj = new Division(numObj, denomObj);
-            return divObj;
+            if(denominator == 1) {
+                Integer* numObj = new Integer(to_string(numerator));
+                return numObj;
+            }
+            else {
+                Integer *numObj = new Integer(to_string(numerator));
+                Integer *denomObj = new Integer(to_string(denominator));
+                Division *divObj = new Division(numObj, denomObj);
+                return divObj;
+            }
         }
         else if(obj1->getValue() == 0 && obj2->getValue() != 0) {
             Integer* intObj = new Integer(to_string(0));
