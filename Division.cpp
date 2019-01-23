@@ -99,11 +99,12 @@ Expression* Division :: simplify() {
             int numerator = 1;
             int denominator = 1;
 
-            for(int i = numList.size() - 1; i  >= 0; i--) {
-                for(int j = 0; j < denomList.size(); j++) {
-                    if(numList[i]->getValue() == denomList[j]->getValue()) {
+            for (int i = numList.size() - 1; i >= 0; i--) {
+                for (int j = 0; j < denomList.size(); j++) {
+                    if (numList[i]->getValue() == denomList[j]->getValue()) {
                         numList.erase(numList.begin() + i);
                         denomList.erase(denomList.begin() + j);
+                        break;
                     }
                 }
             }
@@ -131,11 +132,12 @@ Expression* Division :: simplify() {
             int numerator = 1;
             int denominator = 1;
 
-            for(int i = numList.size() - 1; i  >= 0; i--) {
-                for(int j = 0; j < denomList.size(); j++) {
-                    if(numList[i]->getValue() == denomList[j]->getValue()) {
+            for (int i = numList.size() - 1; i >= 0; i--) {
+                for (int j = 0; j < denomList.size(); j++) {
+                    if (numList[i]->getValue() == denomList[j]->getValue()) {
                         numList.erase(numList.begin() + i);
                         denomList.erase(denomList.begin() + j);
+                        break;
                     }
                 }
             }
@@ -169,6 +171,7 @@ Expression* Division :: simplify() {
                     if (numList[i]->getValue() == denomList[j]->getValue()) {
                         numList.erase(numList.begin() + i);
                         denomList.erase(denomList.begin() + j);
+                        break;
                     }
                 }
             }
@@ -200,6 +203,7 @@ Expression* Division :: simplify() {
                     if (numList[i]->getValue() == denomList[j]->getValue()) {
                         numList.erase(numList.begin() + i);
                         denomList.erase(denomList.begin() + j);
+                        break;
                     }
                 }
             }
